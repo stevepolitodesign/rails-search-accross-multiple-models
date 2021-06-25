@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @search_entry.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @search_entry.body %>
+</p>
+
+<p>
+  <strong>Searchable:</strong>
+  <%= @search_entry.searchable_id %>
+</p>
+
+<%= link_to 'Edit', edit_search_entry_path(@search_entry) %> |
+<%= link_to 'Back', search_entries_path %>
