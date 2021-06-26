@@ -24,7 +24,7 @@ class UserTest < ActiveSupport::TestCase
     @user = users(:one)
 
     assert_no_difference("SearchEntry.count") do
-      @user.update(title: updated_name, body: updated_biography)
+      @user.update(name: updated_name, biography: updated_biography)
     end
 
     assert_equal updated_name, @user.search_entry.title
