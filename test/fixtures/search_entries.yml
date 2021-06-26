@@ -9,3 +9,13 @@ post_two:
   title: MyString
   body: MyText
   searchable: two (Post)
+
+user_one:
+  title: MyString
+  body: MyText
+  searchable: one (User)
+
+user_two:
+  title: MyString
+  body: MyText
+  searchable: two (User)  
