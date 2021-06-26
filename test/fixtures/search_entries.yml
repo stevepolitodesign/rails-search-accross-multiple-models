@@ -1,13 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+post_one:
   title: MyString
   body: MyText
-  searchable: one
-  searchable_type: Searchable
+  searchable: one (Post)
 
-two:
+post_two:
   title: MyString
   body: MyText
-  searchable: two
-  searchable_type: Searchable
+  searchable: two (Post)
