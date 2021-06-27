@@ -9,7 +9,7 @@ In this tutorial you'll learn how to search across multiple models in Rails. Bel
 1. Create a new Rails application.
 
 ```
-rails new rails-search-accross-multiple-models
+rails new rails-search-across-multiple-models
 ```
 
 2. Generate a Post and User Scaffold.
