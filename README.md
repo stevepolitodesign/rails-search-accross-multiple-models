@@ -166,6 +166,20 @@ end
 
 3. Build the search endpoint.
 
+```
+# app/controllers/search_entries_controller.rb
+class SearchEntriesController < ApplicationController
+  def index
+    @search_entries = SearchEntry.where("title LIKE ? OR body LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%") if params[:query]
+  end
+end
+```
+
+> **What's Going On Here?**
+> 
+> - We query for any SearchEntry record that has a title or body containing the search query.
+> - We add the `if params[:query]` conditional to prevent any results from being rendered until a user makes a search query. This is optional.
+
 4. Build the search form and search partial.
 
 ```html+erb
