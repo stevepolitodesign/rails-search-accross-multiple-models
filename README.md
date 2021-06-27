@@ -15,10 +15,11 @@ rails g scaffold User name biography:text
 
 ## Step 2: Create a Model to Store Search Entries
 
-1. Create a SearchEntry model.
+1. Create a SearchEntry model and run migrations.
 
 ```
 rails g model SearchEntry title body:text searchable:references{polymorphic}
+rails db:migrate
 ```
 
 2. Convert the SearchEntry model to a Delegated Type
@@ -143,3 +144,13 @@ end
 > 
 > - We use [callbacks](https://guides.rubyonrails.org/active_record_callbacks.html) to create, update and destroy an associated SearchEntry record per Post and User.
 > - We set the `title` and `body` columns on the SearchEntry to whatever values make post sense. This allows us to have full control over what will be able to be searched. Note that we can pass whatever we want into the `title` and `body` columns.
+
+## Step 5: Create the Search Form
+
+1. Create a SearchEntries Controller.
+
+```
+rails g controller SearchEntries index
+```
+
+2. Add a route for 
