@@ -30,30 +30,40 @@ class SearchEntry < ApplicationRecord
 end
 ```
 
+> **What's Going On Here?**
+>
+> - We give the model a title and a body to standardize what columns we will be able to search against.
+> - The model will connect other models through a [polymorphic association](https://guides.rubyonrails.org/association_basics.html#polymorphic-associations). This means we can make any model searchable.
+> - We use a [delegated type](https://api.rubyonrails.org/classes/ActiveRecord/DelegatedType.html) to connect the SearchEntry model with the Post and User models. 
+
 3. Create a Searchable Concern
 
 ``` ruby
 # app/models/concerns/searchable.rb
 module Searchable
-    extend ActiveSupport::Concern
+  extend ActiveSupport::Concern
 
-    included do
-      has_one :search_entry, as: :searchable, touch: true
-    end    
+  included do
+    has_one :search_entry, as: :searchable, touch: true
+  end    
 end 
 ```
 
 ```ruby
 # app/models/post.rb
 class Post < ApplicationRecord
-    include Searchable
+  include Searchable
 end
 ```
 
 ```ruby
 # app/models/user.rb
 class User < ApplicationRecord
-    include Searchable
+  include Searchable
 end
 ```
 
+> **What's Going On Here?**
+>
+> - We create a [concern](https://api.rubyonrails.org/classes/ActiveSupport/Concern.html) to be shared across the Post and User model. This is not required, but helps keep our code DRY.
+> - The concern is simply connecting the Post and User models to the SearchEntry model. When the Post and User model is updated, the associated SearchEntry model will have it's `updated_at` column updated. This is because we're calling `touch: true`. That part is not required, but helps keep things consistent between models. 
