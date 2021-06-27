@@ -214,3 +214,7 @@ end
 > - We create a [simple search form](https://guides.rubyonrails.org/form_helpers.html#a-generic-search-form) that will hit `search_entries#index`. The `form.text_field :query` field simply passes the correct parameter into the URL.
 > - We create a simple partial to render the search result. We use the [polymorphic_path](https://api.rubyonrails.org/classes/ActionDispatch/Routing/PolymorphicRoutes.html#method-i-polymorphic_path) method to link to the correct model (Post or User).
 > - We use the [highlight](https://api.rubyonrails.org/classes/ActionView/Helpers/TextHelper.html#method-i-highlight) method to highlight the string being searched.
+
+---
+
+Did you like this post? [Follow me on Twitter](https://twitter.com/stevepolitodsgn) to get even more tips.
