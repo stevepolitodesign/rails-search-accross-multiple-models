@@ -4,4 +4,4 @@
   <%= form.submit "Search" %>
   <%= link_to "Reset", search_path %>
 <% end %>
-<%= render @search_entries %>
+<%= render partial: "search_entries/search_entry", collection: @search_entries %>
