@@ -143,7 +143,7 @@ end
 > **What's Going On Here?**
 > 
 > - We use [callbacks](https://guides.rubyonrails.org/active_record_callbacks.html) to create, update and destroy an associated SearchEntry record per Post and User. This ensures that the associated SearchEntry will always be in sync with the source model. 
-> - We set the `title` and `body` columns on the SearchEntry to whatever values make post sense. This allows us to have full control over what will be able to be searched. Note that we can pass whatever we want into the `title` and `body` columns.
+> - We set the `title` and `body` columns on the SearchEntry to whatever values make most sense. This allows us to have full control over what will be able to be searched. Note that we can pass whatever we want into the `title` and `body` columns.
 
 ## Step 5: Create the Search Form
 
@@ -205,6 +205,6 @@ end
 
 > **What's Going On Here?**
 > 
-> - We create a [simple search form](https://guides.rubyonrails.org/form_helpers.html#a-generic-search-form) that will hit `search_entries#index`. The `form.text_field :query` field simply passes the correct paramter into the URL.
+> - We create a [simple search form](https://guides.rubyonrails.org/form_helpers.html#a-generic-search-form) that will hit `search_entries#index`. The `form.text_field :query` field simply passes the correct parameter into the URL.
 > - We create a simple partial to render the search result. We use the [polymorphic_path](https://api.rubyonrails.org/classes/ActionDispatch/Routing/PolymorphicRoutes.html#method-i-polymorphic_path) method to link to the correct model (Post or User).
 > - We use the [highlight](https://api.rubyonrails.org/classes/ActionView/Helpers/TextHelper.html#method-i-highlight) method to highlight the string being searched.
