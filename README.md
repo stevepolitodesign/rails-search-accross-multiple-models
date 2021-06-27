@@ -68,7 +68,24 @@ end
 > - We create a [concern](https://api.rubyonrails.org/classes/ActiveSupport/Concern.html) to be shared across the Post and User model. This is not required, but helps keep our code DRY.
 > - The concern is simply connecting the Post and User models to the SearchEntry model. When the Post and User model is updated, the associated SearchEntry model will have it's `updated_at` column updated. This is because we're calling `touch: true`. That part is not required, but helps keep things consistent between models. 
 
-## Step 3: Use Callbacks to Dynamically Create, Update and Destroy SearchEntry Records.
+## Step 3: Prevent Duplicate SearchEntry Records
+
+1. Add a uniquness scope to the SearchEntry model.
+
+```ruby
+# app/models/search_entry.rb 
+class SearchEntry < ApplicationRecord
+  delegated_type :searchable, types: %w[ Post User ]
+
+  validates :searchable_type, uniqueness: { scope: :searchable_id }
+end
+```
+
+> **What's Going On Here?
+> 
+> - We add a [uniqueness scope](https://guides.rubyonrails.org/active_record_validations.html#uniqueness) to prevent a Post or User from having multiple SearchEntry records associated with them. The will prevent duplicate search results.
+
+## Step 4: Use Callbacks to Dynamically Create, Update and Destroy SearchEntry Records.
 
 1. Add the following callbacks to the Post and User models.
 
@@ -121,3 +138,8 @@ class User < ApplicationRecord
     end    
 end
 ```
+
+> **What's Going On Here?**
+> 
+> - We use [callbacks](https://guides.rubyonrails.org/active_record_callbacks.html) to create, update and destroy an associated SearchEntry record per Post and User.
+> - We set the `title` and `body` columns on the SearchEntry to whatever values make post sense. This allows us to have full control over what will be able to be searched. Note that we can pass whatever we want into the `title` and `body` columns.
