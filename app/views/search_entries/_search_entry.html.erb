@@ -1,4 +1,6 @@
 <%= link_to polymorphic_path search_entry.searchable do %>
   <h2><%= highlight search_entry.title, params[:query] %></h2>
+  <span><strong><%= search_entry.searchable_type %></strong></span>
   <p><%= highlight search_entry.body, params[:query] %></p>
+  <hr/>
 <% end %>
