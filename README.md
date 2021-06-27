@@ -172,7 +172,7 @@ end
 
 3. Build the search endpoint.
 
-```
+```ruby
 # app/controllers/search_entries_controller.rb
 class SearchEntriesController < ApplicationController
   def index
