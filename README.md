@@ -33,7 +33,7 @@ end
 
 > **What's Going On Here?**
 >
-> - We give the model a title and a body to standardize what columns we will be able to search against.
+> - We give the model a title and a body to standardize what columns we will be able to search against. This is the actual model that will be searched.
 > - The model will connect other models through a [polymorphic association](https://guides.rubyonrails.org/association_basics.html#polymorphic-associations). This means we can make any model searchable.
 > - We use a [delegated type](https://api.rubyonrails.org/classes/ActiveRecord/DelegatedType.html) to connect the SearchEntry model with the Post and User models. 
 
@@ -142,7 +142,7 @@ end
 
 > **What's Going On Here?**
 > 
-> - We use [callbacks](https://guides.rubyonrails.org/active_record_callbacks.html) to create, update and destroy an associated SearchEntry record per Post and User.
+> - We use [callbacks](https://guides.rubyonrails.org/active_record_callbacks.html) to create, update and destroy an associated SearchEntry record per Post and User. This ensures that the associated SearchEntry will always be in sync with the source model. 
 > - We set the `title` and `body` columns on the SearchEntry to whatever values make post sense. This allows us to have full control over what will be able to be searched. Note that we can pass whatever we want into the `title` and `body` columns.
 
 ## Step 5: Create the Search Form
