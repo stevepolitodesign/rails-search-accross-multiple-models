@@ -22,7 +22,7 @@ rails g model SearchEntry title body:text searchable:references{polymorphic}
 rails db:migrate
 ```
 
-2. Convert the SearchEntry model to a Delegated Type
+2. Convert the SearchEntry model to a Delegated Type.
 
 ``` ruby
 # app/models/search_entry.rb
@@ -37,7 +37,7 @@ end
 > - The model will connect other models through a [polymorphic association](https://guides.rubyonrails.org/association_basics.html#polymorphic-associations). This means we can make any model searchable.
 > - We use a [delegated type](https://api.rubyonrails.org/classes/ActiveRecord/DelegatedType.html) to connect the SearchEntry model with the Post and User models. 
 
-3. Create a Searchable Concern
+3. Create a Searchable Concern.
 
 ``` ruby
 # app/models/concerns/searchable.rb
@@ -153,4 +153,15 @@ end
 rails g controller SearchEntries index
 ```
 
-2. Add a route for 
+2. Add a route for the search form and root path.
+
+```ruby
+# config/routes.rb
+Rails.application.routes.draw do
+  root to: 'search_entries#index'
+  get 'search_entries/index', as: 'search'
+  ...
+end
+```
+
+3. Build the search form and search partial.
