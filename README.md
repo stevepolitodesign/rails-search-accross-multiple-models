@@ -90,7 +90,7 @@ end
 
 > **What's Going On Here?**
 > 
-> - We add a [uniqueness scope](https://guides.rubyonrails.org/active_record_validations.html#uniqueness) to prevent a Post or User from having multiple SearchEntry records associated with them. The will prevent duplicate search results.
+> - We add a [uniqueness scope](https://guides.rubyonrails.org/active_record_validations.html#uniqueness) to prevent a Post or User from having multiple SearchEntry records associated with them. This will prevent duplicate search results.
 
 ## Step 4: Use Callbacks to Dynamically Create, Update and Destroy SearchEntry Records.
 
