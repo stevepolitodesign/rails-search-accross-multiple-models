@@ -1,4 +1,4 @@
-# Search Accross Multiple Models in Rails
+# Search Across Multiple Models in Rails
 
 In this tutorial you'll learn how to search across multiple models in Rails. Below is a demo of what we'll be building. Note how both Post and User records appear in the search. As an added bonus, we highlight the search query in the results.
 
