@@ -1,4 +1,4 @@
-## Step 1: Set up
+## Step 1: Set Up
 
 1. Create a new Rails application.
 
