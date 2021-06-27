@@ -1,24 +1,59 @@
-# README
+## Step 1: Set up
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Create a new Rails application.
 
-Things you may want to cover:
+```
+rails new rails-search-accross-multiple-models
+```
 
-* Ruby version
+2. Generate a Post and User Scaffold.
 
-* System dependencies
+```
+rails g scaffold Post title body:text
+rails g scaffold User name biography:text
+```
 
-* Configuration
+## Step 2: Create a Model to Store Search Entries
 
-* Database creation
+1. Create a SearchEntry model.
 
-* Database initialization
+```
+rails g model SearchEntry title body:text searchable:references{polymorphic}
+```
 
-* How to run the test suite
+2. Convert the SearchEntry model to a Delegated Type
 
-* Services (job queues, cache servers, search engines, etc.)
+``` ruby
+# app/models/search_entry.rb
+class SearchEntry < ApplicationRecord
+  delegated_type :searchable, types: %w[ Post User ]
+end
+```
 
-* Deployment instructions
+3. Create a Searchable Concern
 
-* ...
+``` ruby
+# app/models/concerns/searchable.rb
+module Searchable
+    extend ActiveSupport::Concern
+
+    included do
+      has_one :search_entry, as: :searchable, touch: true
+    end    
+end 
+```
+
+```ruby
+# app/models/post.rb
+class Post < ApplicationRecord
+    include Searchable
+end
+```
+
+```ruby
+# app/models/user.rb
+class User < ApplicationRecord
+    include Searchable
+end
+```
+
