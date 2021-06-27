@@ -82,7 +82,7 @@ class SearchEntry < ApplicationRecord
 end
 ```
 
-> **What's Going On Here?
+> **What's Going On Here?**
 > 
 > - We add a [uniqueness scope](https://guides.rubyonrails.org/active_record_validations.html#uniqueness) to prevent a Post or User from having multiple SearchEntry records associated with them. The will prevent duplicate search results.
 
@@ -164,4 +164,33 @@ Rails.application.routes.draw do
 end
 ```
 
-3. Build the search form and search partial.
+3. Build the search endpoint.
+
+4. Build the search form and search partial.
+
+```html+erb
+# app/views/search_entries/index.html.erb
+<%= form_with url: :search, method: :get do |form| %>
+  <%= form.label :query, "Search for:" %>
+  <%= form.text_field :query %>
+  <%= form.submit "Search" %>
+  <%= link_to "Reset", search_path %>
+<% end %>
+<%= render partial: "search_entries/search_entry", collection: @search_entries %>
+```
+
+```html+erb
+# app/views/search_entries/_search_entry.html.erb
+<%= link_to polymorphic_path search_entry.searchable do %>
+  <h2><%= highlight search_entry.title, params[:query] %></h2>
+  <span><strong><%= search_entry.searchable_type %></strong></span>
+  <p><%= highlight search_entry.body, params[:query] %></p>
+  <hr/>
+<% end %>
+```
+
+> **What's Going On Here?**
+> 
+> - We create a [simple search form](https://guides.rubyonrails.org/form_helpers.html#a-generic-search-form) that will hit `search_entries#index`. The `form.text_field :query` field simply passes the correct paramter into the URL.
+> - We create a simple partial to render the search result. We use the [polymorphic_path](https://api.rubyonrails.org/classes/ActionDispatch/Routing/PolymorphicRoutes.html#method-i-polymorphic_path) method to link to the correct model (Post or User).
+> - We use the [highlight](https://api.rubyonrails.org/classes/ActionView/Helpers/TextHelper.html#method-i-highlight) method to highlight the string being searched.
