@@ -73,7 +73,7 @@ end
 > **What's Going On Here?**
 >
 > - We create a [concern](https://api.rubyonrails.org/classes/ActiveSupport/Concern.html) to be shared across the Post and User model. This is not required, but helps keep our code DRY.
-> - The concern is simply connecting the Post and User models to the SearchEntry model. When the Post and User model is updated, the associated SearchEntry model will have it's `updated_at` column updated. This is because we're calling `touch: true`. That part is not required, but helps keep things consistent between models. 
+> - The concern is simply connecting the Post and User models to the SearchEntry model. When the Post or User models are updated, the associated SearchEntry model will have its `updated_at` column updated. This is because we're calling `touch: true`. That part is not required, but helps keep things consistent between models. 
 
 ## Step 3: Prevent Duplicate SearchEntry Records
 
